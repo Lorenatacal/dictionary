@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mocha Tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
+</head>
+​
+<body>
+  <!-- Mocha setup -->
+  <div id="mocha"></div>
+  <script src="https://unpkg.com/chai/chai.js"></script>
+  <script src="https://unpkg.com/mocha/mocha.js"></script>
+​
+  <script class="mocha-init">
+    mocha.setup('bdd');
+    mocha.checkLeaks();
+  </script>
+​
+  <!-- Main code -->
+  <script>
+        // write your code here 
+        class Dictionary {
+           
+            constructor() {
+                this.entries = {}
+            }
+    
+            newEntry(key, value) {
+                this.entries.key = value
+            }
+    
+            look(key) {
+                return this.entries.key
+            }
+         }
+         newDictionary = new Dictionary();
+         newDictionary.newEntry('Test', 'test')
+         console.log(newDictionary.look('Test'))
+  </script>
+​
+  <!-- tests -->
+  <script>
+    const expect = chai.expect
+  </script>
+  <script>
+    // write your tests here
+    describe("Look", () => {
+        it("should return a key", () => {
+            expect(newDictionary.look('Test')).to.equal('test')
+        })
+    })
+    describe("newEntry", () => {
+        it("should add a new entry", () => {
+            newDictionary.newEntry("Carrots", "Orange")
+            expect(newDictionary.look("Carrots")).to.equal("Orange")
+        })
+    })
+  </script>
+  <script class="mocha-exec">
+    mocha.run();
+  </script>
+</body>
+​
+</html>
